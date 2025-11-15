@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Isaiah See</title>
+  <meta name="description" content="Get in touch with Isaiah See. Fill out the form and you'll receive a reply within 24 hours." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #555555;
+      --accent: #000000;
+      --card-bg: #f8f8f8;
+      --radius: 14px;
+      --max-w: 1100px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-hover: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth}
+    html,body{height:100%}
+    body{
+      margin:0;padding:0;
+      font-family: "Raleway", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.6;
+    }
+
+    .skip-link{
+      position:absolute;top:-40px;left:0;background:var(--accent);color:white;padding:8px 16px;
+      text-decoration:none;border-radius:0 0 8px 0;font-weight:600;z-index:100;
+    }
+    .skip-link:focus{top:0}
+
+    .container{max-width:var(--max-w);margin:32px auto;padding:24px}
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:32px;
+      animation: fadeInDown 0.6s ease-out;
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .logo{
+      width:48px;height:48px;border-radius:10px;background:var(--accent);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:white;
+      transition:transform 0.3s ease;
+    }
+    .logo:hover{transform:rotate(-5deg) scale(1.05)}
+
+    nav{display:flex;gap:4px}
+    nav a{
+      color:var(--muted);text-decoration:none;padding:8px 14px;font-weight:600;
+      border-radius:8px;transition:all 0.2s ease;
+    }
+    nav a:hover,nav a:focus{color:var(--text);background:var(--card-bg)}
+    nav a:focus{outline:2px solid var(--accent);outline-offset:2px}
+
+    .card{
+      background:var(--card-bg);border-radius:var(--radius);padding:28px;
+      border:1px solid #e0e0e0;box-shadow:var(--shadow);
+      transition:box-shadow 0.3s ease;
+    }
+    .card:hover{box-shadow:var(--shadow-hover)}
+
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin:0 0 20px 0}
+    .section-title h1{margin:0;font-size:clamp(28px,4vw,42px)}
+
+    .form-group{margin-bottom:16px}
+    .form-group label{display:block;margin-bottom:6px;font-weight:600;color:var(--text)}
+    .form-group input,.form-group textarea{
+      width:100%;background:white;border:2px solid #ddd;padding:12px;
+      border-radius:10px;font-family:inherit;font-size:15px;
+      transition:border-color 0.2s ease;
+    }
+    .form-group input:focus,.form-group textarea:focus{
+      outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,0,0,0.05);
+    }
+    .form-group textarea{min-height:140px;resize:vertical}
+
+    .btn{
+      background:var(--accent);border:none;padding:12px 20px;border-radius:10px;
+      color:white;font-weight:700;cursor:pointer;text-decoration:none;
+      display:inline-block;transition:all 0.2s ease;font-size:15px;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+    .btn:focus{outline:2px solid var(--accent);outline-offset:3px}
+
+    footer{margin-top:60px;color:var(--muted);text-align:center;padding:32px;border-top:1px solid #e0e0e0}
+
+    @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="container">
+    <header role="banner">
+      <a class="brand" href="index.html" aria-label="Home">
+        <div class="logo" aria-hidden="true">IS</div>
+        <div>
+          <div style="font-weight:800">Isaiah See</div>
+          <div class="muted" style="font-size:12px">Software Developer · AI Enthusiast · Innovator</div>
+        </div>
+      </a>
+      <nav role="navigation" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="main" role="main">
+      <section class="card">
+        <div class="section-title">
+          <h1>Let's Work Together</h1>
+        </div>
+        <p class="muted" style="margin-bottom:24px">Have a project in mind? I'd love to hear about it. Fill out the form below and I'll get back to you within 24 hours.</p>
+        <form onsubmit="handleSubmit(event)" id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input id="name" type="text" placeholder="John Doe" required aria-required="true" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input id="email" type="email" placeholder="john@example.com" required aria-required="true" autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" placeholder="Tell me about your project..." required aria-required="true"></textarea>
+          </div>
+          <button class="btn" type="submit">Send Message</button>
+          <div id="statusMessage" class="status-message" role="alert" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <footer role="contentinfo">
+        <div style="margin-bottom:12px">
+          <strong>Your Name</strong> — Creative Developer & Designer
+        </div>
+        <div>© <span id="year"></span> All rights reserved. Built with care and attention to detail.</div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function handleSubmit(e){
+      e.preventDefault();
+      const form = e.target;
+      const statusMsg = document.getElementById('statusMessage');
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if(!name || !email || !message) {
+        showStatus('Please fill in all required fields.', 'error');
+        return;
+      }
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!emailPattern.test(email)) {
+        showStatus('Please enter a valid email address.', 'error');
+        return;
+      }
+
+      showStatus('Thank you! Your message has been sent successfully.', 'success');
+      form.reset();
+    }
+
+    function showStatus(message, type) {
+      const statusMsg = document.getElementById('statusMessage');
+      statusMsg.textContent = message;
+      statusMsg.className = `status-message ${type}`;
+      statusMsg.style.display = 'block';
+
+      setTimeout(() => {
+        statusMsg.style.display = 'none';
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
