@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kayumutiara — Isaiah See</title>
+  <meta name="description" content="Kayumutiara project by CIIT Senior High School" />
+  <style>
+    :root{
+      --bg: #3a4146;
+      --text: #ffffff;
+      --muted: #b0b8bf;
+      --accent: #ffffff;
+      --card-bg: #2d3338;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.5;
+      overflow-x:hidden;
+    }
+    
+    /* Header */
+    header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:1000;
+      background:var(--bg);
+      padding:24px 60px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      animation:fadeInDown 0.8s ease-out;
+    }
+    
+    .logo-container{
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
+    
+    .moon-icon{
+      width:32px;
+      height:32px;
+      background:white;
+      border-radius:50%;
+      cursor:pointer;
+      transition:transform 0.3s ease;
+    }
+    .moon-icon:hover{transform:scale(1.1)}
+    
+    .logo{
+      width:60px;
+      height:60px;
+      background:white;
+      clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      cursor:pointer;
+      transition:transform 0.3s ease;
+    }
+    .logo:hover{transform:rotate(10deg) scale(1.05)}
+    
+    nav{
+      display:flex;
+      gap:50px;
+      align-items:center;
+    }
+    nav a{
+      color:var(--text);
+      text-decoration:none;
+      font-size:16px;
+      font-weight:500;
+      transition:opacity 0.3s;
+      position:relative;
+    }
+    nav a:hover{opacity:0.7}
+    nav a.active::before{
+      content:'•';
+      position:absolute;
+      left:-15px;
+      color:white;
+    }
+    
+    /* Main Content */
+    main{
+      padding:140px 60px 80px;
+      max-width:1600px;
+      margin:0 auto;
+    }
+    
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted);
+      text-decoration:none;
+      font-size:16px;
+      margin-bottom:60px;
+      transition:all 0.3s;
+    }
+    .back-link:hover{
+      color:white;
+      gap:15px;
+    }
+    
+    .page-header{
+      margin-bottom:80px;
+      animation:fadeInUp 0.8s ease-out 0.2s both;
+    }
+    
+    .page-title{
+      font-size:clamp(48px, 7vw, 96px);
+      font-weight:800;
+      letter-spacing:-0.02em;
+      margin-bottom:20px;
+    }
+    
+    .page-subtitle{
+      font-size:clamp(18px, 2vw, 24px);
+      color:var(--muted);
+      max-width:700px;
+      line-height:1.6;
+    }
+    
+    /* Hero Section */
+    .hero-section{
+      margin-bottom:100px;
+      animation:fadeInUp 0.8s ease-out 0.3s both;
+    }
+    
+    .hero-image{
+      width:100%;
+      max-width:1200px;
+      aspect-ratio:16/9;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      margin-bottom:40px;
+      overflow:hidden;
+    }
+    
+    .hero-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    
+    /* Content Sections */
+    .content-section{
+      margin-bottom:80px;
+      animation:fadeInUp 0.8s ease-out 0.4s both;
+    }
+    
+    .section-title{
+      font-size:clamp(32px, 4vw, 48px);
+      font-weight:700;
+      margin-bottom:30px;
+      letter-spacing:-0.01em;
+    }
+    
+    .section-content{
+      font-size:clamp(16px, 1.8vw, 20px);
+      line-height:1.8;
+      color:var(--muted);
+      max-width:900px;
+    }
+    
+    .section-content p{
+      margin-bottom:25px;
+    }
+    
+    .section-content strong{
+      color:white;
+    }
+    
+    /* Features Grid */
+    .features-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      gap:30px;
+      margin-top:50px;
+    }
+    
+    .feature-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      padding:35px;
+      transition:all 0.3s;
+    }
+    
+    .feature-card:hover{
+      background:rgba(255,255,255,0.1);
+      transform:translateY(-5px);
+    }
+    
+    .feature-icon{
+      font-size:40px;
+      margin-bottom:20px;
+    }
+    
+    .feature-card h3{
+      font-size:22px;
+      margin-bottom:15px;
+      font-weight:700;
+    }
+    
+    .feature-card p{
+      color:var(--muted);
+      line-height:1.6;
+      font-size:15px;
+    }
+    
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      gap:20px;
+      margin-top:50px;
+    }
+    
+    .gallery-item{
+      aspect-ratio:4/3;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      overflow:hidden;
+      cursor:pointer;
+      transition:transform 0.3s;
+    }
+    
+    .gallery-item:hover{
+      transform:scale(1.02);
+    }
+    
+    .gallery-item img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    
+    /* CTA Section */
+    .cta-section{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      padding:60px;
+      text-align:center;
+      margin:80px 0;
+    }
+    
+    .cta-section h2{
+      font-size:clamp(32px, 4vw, 48px);
+      margin-bottom:20px;
+    }
+    
+    .cta-section p{
+      color:var(--muted);
+      font-size:clamp(16px, 1.8vw, 20px);
+      margin-bottom:30px;
+    }
+    
+    .cta-button{
+      display:inline-block;
+      background:white;
+      color:var(--bg);
+      padding:18px 50px;
+      font-size:16px;
+      font-weight:700;
+      text-decoration:none;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      transition:all 0.3s;
+    }
+    
+    .cta-button:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 30px rgba(255,255,255,0.3);
+    }
+    
+    /* Social Links */
+    .social-links{
+      position:fixed;
+      right:60px;
+      bottom:60px;
+      display:flex;
+      gap:20px;
+      align-items:center;
+      z-index:100;
+    }
+    
+    .social-links a{
+      color:white;
+      font-size:20px;
+      transition:transform 0.3s;
+      text-decoration:none;
+    }
+    .social-links a:hover{transform:translateY(-3px)}
+    
+    .menu-btn{
+      width:50px;
+      height:50px;
+      border:2px solid white;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:all 0.3s;
+      background:transparent;
+      color:white;
+      font-size:20px;
+    }
+    .menu-btn:hover{background:white;color:var(--bg)}
+    
+    /* Footer */
+    footer{
+      text-align:center;
+      padding:60px 20px;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,0.1);
+      margin-top:80px;
+    }
+    
+    @keyframes fadeInDown{
+      from{opacity:0;transform:translateY(-30px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    @keyframes fadeInUp{
+      from{opacity:0;transform:translateY(30px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    
+    @media (max-width:1024px){
+      header{padding:20px 30px}
+      main{padding:120px 30px 60px}
+      .features-grid{gap:25px}
+      .gallery{gap:15px}
+      .social-links{right:30px;bottom:30px}
+      .cta-section{padding:40px}
+    }
+    
+    @media (max-width:768px){
+      header{padding:20px}
+      main{padding:100px 20px 40px}
+      nav{display:none}
+      .features-grid{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr}
+      .social-links{right:20px;bottom:20px;gap:15px}
+      .logo{width:50px;height:50px}
+      .cta-section{padding:30px 20px}
+    }
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <nav role="navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="others.html">Others</a>
+      <a href="kayumutiara.html" class="active">Kayumutiara</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1 class="page-title">Kayumutiara</h1>
+      <p class="page-subtitle">A CIIT compilation of orignial Theatre Plays - showcase of fine elegance and aritistry</p>
+    </div>
+
+    <div class="hero-section">
+      <div class="hero-image">
+        <!-- Add your hero image here -->
+        <img src="images/kayumutiara-hero.jpg" alt="Kayumutiara showcase" onerror="this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'">
+      </div>
+    </div>
+
+    <section class="content-section">
+      <h2 class="section-title">About the Project</h2>
+      <div class="section-content">
+        <p><strong>Kayumutiara</strong> represents a harmonious blend of traditional woodworking techniques and modern design principles. This project showcases the beauty and versatility of wood as a medium for creating functional art.</p>
+        <p>Each piece is carefully crafted with attention to detail, sustainability, and timeless aesthetics. The name "Mutiara" (meaning "pearl" in Indonesian) reflects the precious nature of these handcrafted wooden creations.</p>
+        <p>Through this project, we aim to preserve traditional craftsmanship while embracing contemporary design sensibilities, creating pieces that are both beautiful and functional.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Key Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🌳</div>
+          <h3>Sustainable Materials</h3>
+          <p>Using responsibly sourced wood from sustainable forests, ensuring environmental consciousness in every piece.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <h3>Handcrafted Quality</h3>
+          <p>Each item is meticulously handcrafted by skilled artisans, ensuring unique character and superior quality.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Modern Design</h3>
+          <p>Contemporary aesthetics meet traditional techniques, creating timeless pieces that complement any space.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💎</div>
+          <h3>Premium Finish</h3>
+          <p>Natural oils and finishes enhance the wood's beauty while protecting and preserving it for generations.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔧</div>
+          <h3>Custom Solutions</h3>
+          <p>Tailored designs to meet specific needs and preferences, ensuring perfect fit and functionality.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">♻️</div>
+          <h3>Eco-Friendly</h3>
+          <p>Committed to sustainable practices throughout the production process, minimizing environmental impact.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Gallery</h2>
+      <div class="gallery">
+        <div class="gallery-item">
+          <!-- Add your gallery images here -->
+          <img src="images/kayumutiara-1.jpg" alt="Kayumutiara 1" onerror="this.parentElement.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'">
+        </div>
+        <div class="gallery-item">
+          <img src="images/kayumutiara-2.jpg" alt="Kayumutiara piece 2" onerror="this.parentElement.style.background='linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'">
+        </div>
+        <div class="gallery-item">
+          <img src="images/kayumutiara-3.jpg" alt="Kayumutiara piece 3" onerror="this.parentElement.style.background='linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'">
+        </div>
+        <div class="gallery-item">
+          <img src="images/kayumutiara-4.jpg" alt="Kayumutiara piece 4" onerror="this.parentElement.style.background='linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'">
+        </div>
+        <div class="gallery-item">
+          <img src="images/kayumutiara-5.jpg" alt="Kayumutiara piece 5" onerror="this.parentElement.style.background='linear-gradient(135deg, #fa709a 0%, #fee140 100%)'">
+        </div>
+        <div class="gallery-item">
+          <img src="images/kayumutiara-6.jpg" alt="Kayumutiara piece 6" onerror="this.parentElement.style.background='linear-gradient(135deg, #30cfd0 0%, #330867 100%)'">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Social Links -->
+  <div class="social-links">
+    <a href="https://github.com/Izaya08?tab=repositories" target="_blank" aria-label="GitHub">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/isaiahseecompany" target="_blank" aria-label="LinkedIn">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <a href="mailto:Isaiahsosee@gmail.com" aria-label="Email">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Others — Isaiah See</title>
+  <meta name="description" content="Additional projects and content by Isaiah See" />
+  <style>
+    :root{
+      --bg: #3a4146;
+      --text: #ffffff;
+      --muted: #b0b8bf;
+      --accent: #ffffff;
+      --card-bg: #2d3338;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.5;
+      overflow-x:hidden;
+    }
+    
+    /* Header */
+    header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:1000;
+      background:var(--bg);
+      padding:24px 60px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      animation:fadeInDown 0.8s ease-out;
+    }
+    
+    .logo-container{
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
+    
+    .moon-icon{
+      width:32px;
+      height:32px;
+      background:white;
+      border-radius:50%;
+      cursor:pointer;
+      transition:transform 0.3s ease;
+    }
+    .moon-icon:hover{transform:scale(1.1)}
+    
+    .logo{
+      width:60px;
+      height:60px;
+      background:white;
+      clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      cursor:pointer;
+      transition:transform 0.3s ease;
+    }
+    .logo:hover{transform:rotate(10deg) scale(1.05)}
+    
+    nav{
+      display:flex;
+      gap:50px;
+      align-items:center;
+    }
+    nav a{
+      color:var(--text);
+      text-decoration:none;
+      font-size:16px;
+      font-weight:500;
+      transition:opacity 0.3s;
+      position:relative;
+    }
+    nav a:hover{opacity:0.7}
+    nav a.active::before{
+      content:'•';
+      position:absolute;
+      left:-15px;
+      color:white;
+    }
+    
+    /* Main Content */
+    main{
+      padding:140px 60px 80px;
+      max-width:1600px;
+      margin:0 auto;
+    }
+    
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted);
+      text-decoration:none;
+      font-size:16px;
+      margin-bottom:60px;
+      transition:all 0.3s;
+    }
+    .back-link:hover{
+      color:white;
+      gap:15px;
+    }
+    
+    .page-header{
+      margin-bottom:80px;
+      animation:fadeInUp 0.8s ease-out 0.2s both;
+    }
+    
+    .page-title{
+      font-size:clamp(48px, 7vw, 96px);
+      font-weight:800;
+      letter-spacing:-0.02em;
+      margin-bottom:20px;
+    }
+    
+    .page-subtitle{
+      font-size:clamp(18px, 2vw, 24px);
+      color:var(--muted);
+      max-width:700px;
+    }
+    
+    /* Content Grid */
+    .content-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      gap:40px;
+      margin-bottom:80px;
+    }
+    
+    .content-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      padding:40px;
+      transition:all 0.3s;
+      animation:fadeInUp 0.6s ease-out both;
+    }
+    
+    .content-card:hover{
+      background:rgba(255,255,255,0.1);
+      transform:translateY(-5px);
+    }
+    
+    .content-card h3{
+      font-size:24px;
+      margin-bottom:15px;
+      font-weight:700;
+    }
+    
+    .content-card p{
+      color:var(--muted);
+      line-height:1.6;
+      margin-bottom:20px;
+    }
+    
+    .content-card a{
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:gap 0.3s;
+    }
+    
+    .content-card a:hover{
+      gap:15px;
+    }
+    
+    /* Social Links */
+    .social-links{
+      position:fixed;
+      right:60px;
+      bottom:60px;
+      display:flex;
+      gap:20px;
+      align-items:center;
+      z-index:100;
+    }
+    
+    .social-links a{
+      color:white;
+      font-size:20px;
+      transition:transform 0.3s;
+      text-decoration:none;
+    }
+    .social-links a:hover{transform:translateY(-3px)}
+    
+    .menu-btn{
+      width:50px;
+      height:50px;
+      border:2px solid white;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:all 0.3s;
+      background:transparent;
+      color:white;
+      font-size:20px;
+    }
+    .menu-btn:hover{background:white;color:var(--bg)}
+    
+    /* Footer */
+    footer{
+      text-align:center;
+      padding:60px 20px;
+      color:var(--muted);
+      border-top:1px solid rgba(255,255,255,0.1);
+      margin-top:80px;
+    }
+    
+    @keyframes fadeInDown{
+      from{opacity:0;transform:translateY(-30px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    @keyframes fadeInUp{
+      from{opacity:0;transform:translateY(30px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    
+    @media (max-width:1024px){
+      header{padding:20px 30px}
+      main{padding:120px 30px 60px}
+      .content-grid{gap:30px}
+      .social-links{right:30px;bottom:30px}
+    }
+    
+    @media (max-width:768px){
+      header{padding:20px}
+      main{padding:100px 20px 40px}
+      nav{display:none}
+      .content-grid{grid-template-columns:1fr}
+      .social-links{right:20px;bottom:20px;gap:15px}
+      .logo{width:50px;height:50px}
+    }
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <nav role="navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="others.html" class="active">Others</a>
+      <a href="Kayumutiara.html" class="active">Kayumutiara</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1 class="page-title">Others</h1>
+      <p class="page-subtitle">Additional projects and content by Isaiah See</p>
+    </div>
+
+    <div class="content-grid">
+      <div class="content-card">
+        <h3>Blog Posts</h3>
+        <p>Thoughts on software development, AI, and technology trends.</p>
+        <a href="#">Coming Soon →</a>
+      </div>
+
+      <div class="content-card">
+        <h3>Resources</h3>
+        <p>Curated collection of tools, libraries, and learning materials.</p>
+        <a href="#">Coming Soon →</a>
+      </div>
+
+      <div class="content-card">
+        <h3>Experiments</h3>
+        <p>Creative coding projects and technical experiments.</p>
+        <a href="#">Coming Soon →</a>
+      </div>
+
+      <div class="content-card">
+        <h3>Tutorials</h3>
+        <p>Step-by-step guides and educational content.</p>
+        <a href="#">Coming Soon →</a>
+      </div>
+
+      <div class="content-card">
+        <h3>Case Studies</h3>
+        <p>In-depth analysis of projects and technical challenges.</p>
+        <a href="#">Coming Soon →</a>
+      </div>
+
+      <div class="content-card">
+        <h3>Open Source</h3>
+        <p>Contributions to open source projects and community work.</p>
+        <a href="#">Coming Soon →</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Social Links -->
+  <div class="social-links">
+    <a href="https://github.com/Izaya08?tab=repositories" target="_blank" aria-label="GitHub">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/isaiahseecompany" target="_blank" aria-label="LinkedIn">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <a href="mailto:Isaiahsosee@gmail.com" aria-label="Email">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
