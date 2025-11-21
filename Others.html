@@ -38,32 +38,6 @@
       animation:fadeInDown 0.8s ease-out;
     }
     
-    .logo-container{
-      display:flex;
-      align-items:center;
-      gap:20px;
-    }
-    
-    .moon-icon{
-      width:32px;
-      height:32px;
-      background:white;
-      border-radius:50%;
-      cursor:pointer;
-      transition:transform 0.3s ease;
-    }
-    .moon-icon:hover{transform:scale(1.1)}
-    
-    .logo{
-      width:60px;
-      height:60px;
-      background:white;
-      clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-      cursor:pointer;
-      transition:transform 0.3s ease;
-    }
-    .logo:hover{transform:rotate(10deg) scale(1.05)}
-    
     nav{
       display:flex;
       gap:50px;
@@ -92,84 +66,106 @@
       margin:0 auto;
     }
     
-    .back-link{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      color:var(--muted);
-      text-decoration:none;
-      font-size:16px;
-      margin-bottom:60px;
-      transition:all 0.3s;
-    }
-    .back-link:hover{
-      color:white;
-      gap:15px;
-    }
-    
-    .page-header{
-      margin-bottom:80px;
-      animation:fadeInUp 0.8s ease-out 0.2s both;
-    }
-    
-    .page-title{
-      font-size:clamp(48px, 7vw, 96px);
-      font-weight:800;
-      letter-spacing:-0.02em;
-      margin-bottom:20px;
-    }
-    
-    .page-subtitle{
-      font-size:clamp(18px, 2vw, 24px);
-      color:var(--muted);
-      max-width:700px;
-    }
-    
-    /* Content Grid */
-    .content-grid{
+    /* Projects Grid */
+    .projects-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
-      gap:40px;
+      grid-template-columns:repeat(2, 1fr);
+      gap:60px 40px;
       margin-bottom:80px;
     }
     
-    .content-card{
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.1);
-      padding:40px;
-      transition:all 0.3s;
+    .project-card{
+      position:relative;
+      cursor:pointer;
       animation:fadeInUp 0.6s ease-out both;
+      
+      /* --- FIX FOR PURPLE LINKS --- */
+      text-decoration: none; /* Removes underline */
+      color: var(--text);    /* Forces text to be white (removes blue/purple default) */
+      display: block;        /* Ensures the link behaves like a block */
+      /* --------------------------- */
     }
     
-    .content-card:hover{
-      background:rgba(255,255,255,0.1);
-      transform:translateY(-5px);
+    .project-card:nth-child(1){animation-delay:0.3s}
+    .project-card:nth-child(2){animation-delay:0.4s}
+    .project-card:nth-child(3){animation-delay:0.5s}
+    .project-card:nth-child(4){animation-delay:0.6s}
+    .project-card:nth-child(5){animation-delay:0.7s}
+    .project-card:nth-child(6){animation-delay:0.8s}
+    
+    .project-image{
+      width:100%;
+      aspect-ratio:4/3;
+      background:#2d3338;
+      overflow:hidden;
+      margin-bottom:25px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
     
-    .content-card h3{
-      font-size:24px;
-      margin-bottom:15px;
+    .project-image::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.3);
+      opacity:0;
+      transition:opacity 0.5s;
+      z-index:1;
+    }
+    
+    .project-card:hover .project-image::before{
+      opacity:1;
+    }
+    
+    .project-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .project-card:hover .project-image img{
+      transform:scale(1.08);
+    }
+    
+    .project-info{
+      display:flex;
+      justify-content:space-between;
+      align-items:start;
+      gap:20px;
+    }
+    
+    .project-title{
+      font-size:clamp(20px, 2.5vw, 28px);
       font-weight:700;
+      margin-bottom:8px;
+      letter-spacing:-0.01em;
+      color: var(--text); /* Ensure title stays white */
     }
     
-    .content-card p{
+    .project-description{
       color:var(--muted);
+      font-size:15px;
       line-height:1.6;
-      margin-bottom:20px;
+      margin-bottom:15px;
     }
     
-    .content-card a{
-      color:white;
-      text-decoration:none;
-      font-weight:600;
+    .coming-soon{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      transition:gap 0.3s;
+      color:var(--muted);
+      font-size:13px;
+      margin-top:10px;
     }
-    
-    .content-card a:hover{
-      gap:15px;
+
+    .project-link {
+        color: var(--text);
+        font-size: 13px;
+        margin-top: 10px;
+        display: inline-block;
     }
     
     /* Social Links */
@@ -191,31 +187,6 @@
     }
     .social-links a:hover{transform:translateY(-3px)}
     
-    .menu-btn{
-      width:50px;
-      height:50px;
-      border:2px solid white;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      transition:all 0.3s;
-      background:transparent;
-      color:white;
-      font-size:20px;
-    }
-    .menu-btn:hover{background:white;color:var(--bg)}
-    
-    /* Footer */
-    footer{
-      text-align:center;
-      padding:60px 20px;
-      color:var(--muted);
-      border-top:1px solid rgba(255,255,255,0.1);
-      margin-top:80px;
-    }
-    
     @keyframes fadeInDown{
       from{opacity:0;transform:translateY(-30px)}
       to{opacity:1;transform:translateY(0)}
@@ -228,7 +199,7 @@
     @media (max-width:1024px){
       header{padding:20px 30px}
       main{padding:120px 30px 60px}
-      .content-grid{gap:30px}
+      .projects-grid{gap:50px 30px}
       .social-links{right:30px;bottom:30px}
     }
     
@@ -236,9 +207,8 @@
       header{padding:20px}
       main{padding:100px 20px 40px}
       nav{display:none}
-      .content-grid{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:1fr;gap:60px}
       .social-links{right:20px;bottom:20px;gap:15px}
-      .logo{width:50px;height:50px}
     }
   </style>
 </head>
@@ -254,47 +224,80 @@
   </header>
 
   <main>
-    <div class="page-header">
-      <h1 class="page-title">Others</h1>
-      <p class="page-subtitle">Additional projects and content by Isaiah See</p>
-    </div>
+    <div class="projects-grid">
 
-    <div class="content-grid">
-      <div class="content-card">
-        <h3>Blog Posts</h3>
-        <p>Thoughts on software development, AI, and technology trends.</p>
-        <a href="#">Coming Soon →</a>
+      <a href="https://drive.google.com/file/d/157U2iLSIi9IyY-DhiPi9SiYGDZofvrfv/view?usp=sharing" target="_blank" class="project-card">
+        <div class="project-image">
+          <img src="images/Provid.png" alt="Promotional Video for PC Building Seminar">
+        </div>
+        <div class="project-info">
+          <div>
+            <h3 class="project-title">Promotional Video for PC Building Seminar</h3>
+            <p class="project-description">A CIIT SHS Seminar video that my group in "Java" have created, edited, posted and later, hosted, headed, and I spoke for as the Head Speaker. The topic being how to build a PC using PC Building Simulator, that was catered to MVA students. </p>
+          </div>
+        </div>
+      </a>
+
+      <div class="project-card">
+        <div class="project-image">
+          <img src="images/resources.png" alt="Resources Preview">
+        </div>
+        <div class="project-info">
+          <div>
+            <h3 class="project-title">Resources</h3>
+            <p class="project-description">Curated collection of tools, libraries, and learning materials.</p>
+          </div>
+        </div>
       </div>
 
-      <div class="content-card">
-        <h3>Resources</h3>
-        <p>Curated collection of tools, libraries, and learning materials.</p>
-        <a href="#">Coming Soon →</a>
+      <div class="project-card">
+        <div class="project-image">
+          <img src="images/experiments.png" alt="Experiments Preview">
+        </div>
+        <div class="project-info">
+          <div>
+            <h3 class="project-title">Experiments</h3>
+            <p class="project-description">Creative coding projects and technical experiments.</p>
+          </div>
+        </div>
       </div>
 
-      <div class="content-card">
-        <h3>Experiments</h3>
-        <p>Creative coding projects and technical experiments.</p>
-        <a href="#">Coming Soon →</a>
+      <div class="project-card">
+        <div class="project-image">
+          <img src="images/tutorials.png" alt="Tutorials Preview">
+        </div>
+        <div class="project-info">
+          <div>
+            <h3 class="project-title">Tutorials</h3>
+            <p class="project-description">Step-by-step guides and educational content.</p>
+          </div>
+        </div>
       </div>
 
-      <div class="content-card">
-        <h3>Tutorials</h3>
-        <p>Step-by-step guides and educational content.</p>
-        <a href="#">Coming Soon →</a>
+      <div class="project-card">
+        <div class="project-image">
+          <img src="images/case-studies.png" alt="Case Studies Preview">
+        </div>
+        <div class="project-info">
+          <div>
+            <h3 class="project-title">Case Studies</h3>
+            <p class="project-description">In-depth analysis of projects and technical challenges.</p>
+          </div>
+        </div>
       </div>
 
-      <div class="content-card">
-        <h3>Case Studies</h3>
-        <p>In-depth analysis of projects and technical challenges.</p>
-        <a href="#">Coming Soon →</a>
+      <div class="project-card">
+        <div class="project-image">
+          <img src="images/open-source.png" alt="Open Source Preview">
+        </div>
+        <div class="project-info">
+          <div>
+            <h3 class="project-title">Open Source</h3>
+            <p class="project-description">Contributions to open source projects and community work.</p>
+          </div>
+        </div>
       </div>
 
-      <div class="content-card">
-        <h3>Open Source</h3>
-        <p>Contributions to open source projects and community work.</p>
-        <a href="#">Coming Soon →</a>
-      </div>
     </div>
   </main>
 
@@ -310,9 +313,5 @@
       <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
     </a>
   </div>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
